@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>교회</title>
+<title>우리교회</title>
 
 <script src="data.js"></script>
 
@@ -18,7 +18,7 @@
 
 *{margin:0;padding:0;box-sizing:border-box;font-family:'Pretendard',sans-serif;}
 
-body{background:var(--bg);color:#fff;}
+body{background:var(--bg);color:#fff;line-height:1.6;}
 
 header{
   position:fixed;
@@ -36,61 +36,100 @@ header.scrolled{
   backdrop-filter:blur(10px);
 }
 
-nav a{
-  margin-left:15px;
-  font-size:14px;
-  text-decoration:none;
-  color:#fff;
+/* 네비 */
+nav{
+  display:flex;
 }
 
+nav a{
+  margin-left:20px;
+  text-decoration:none;
+  color:#fff;
+  font-size:14px;
+}
+
+/* 햄버거 */
+.menu-toggle{
+  display:none;
+  font-size:22px;
+  cursor:pointer;
+}
+
+/* 모바일 메뉴 */
+.mobile-menu{
+  position:fixed;
+  top:0;
+  right:-100%;
+  width:70%;
+  height:100%;
+  background:#020617;
+  padding:40px;
+  transition:0.3s;
+}
+
+.mobile-menu.active{
+  right:0;
+}
+
+.mobile-menu a{
+  display:block;
+  margin:20px 0;
+  color:#fff;
+  text-decoration:none;
+}
+
+/* 히어로 */
 .hero{
   height:100vh;
   display:flex;
   justify-content:center;
   align-items:center;
   text-align:center;
-  background:linear-gradient(rgba(0,0,0,0.6),rgba(0,0,0,0.8)),
-  url('https://images.unsplash.com/photo-1507692049790-de58290a4334') center/cover;
+  background:
+    linear-gradient(rgba(0,0,0,0.6),rgba(0,0,0,0.8)),
+    url('https://images.unsplash.com/photo-1507692049790-de58290a4334') center/cover;
   padding:0 20px;
 }
 
-.hero h1{font-size:38px;}
+.hero h1{font-size:40px;}
 .hero p{margin-top:10px;opacity:0.8;}
 
 section{
-  padding:80px 20px;
+  padding:90px 20px;
   max-width:1000px;
   margin:auto;
 }
 
-h2{margin-bottom:20px;font-size:24px;}
+h2{
+  margin-bottom:25px;
+  font-size:26px;
+  font-weight:600;
+}
 
 .grid{
   display:grid;
   grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
-  gap:15px;
+  gap:18px;
 }
 
 .card{
   background:var(--card);
-  padding:20px;
-  border-radius:12px;
+  padding:22px;
+  border-radius:14px;
   transition:0.3s;
 }
 
 .card:hover{
-  transform:translateY(-5px);
+  transform:translateY(-6px);
+  box-shadow:0 15px 30px rgba(0,0,0,0.4);
 }
 
-.btn{
-  display:inline-block;
+.map{
+  width:100%;
+  height:300px;
+  border-radius:12px;
+  overflow:hidden;
   margin-top:15px;
-  padding:10px 20px;
-  background:var(--main);
-  border-radius:20px;
-  text-decoration:none;
-  color:white;
-  font-size:14px;
 }
 
 footer{
@@ -99,6 +138,13 @@ footer{
   background:#020617;
   color:#888;
   font-size:13px;
+}
+
+/* 📱 반응형 */
+@media(max-width:768px){
+  nav{display:none;}
+  .menu-toggle{display:block;}
+  .hero h1{font-size:28px;}
 }
 </style>
 </head>
@@ -113,7 +159,16 @@ footer{
     <a href="#notice">공지</a>
     <a href="#location">오시는길</a>
   </nav>
+  <div class="menu-toggle" onclick="toggleMenu()">☰</div>
 </header>
+
+<!-- 모바일 메뉴 -->
+<div class="mobile-menu" id="mobileMenu">
+  <a href="#about" onclick="toggleMenu()">소개</a>
+  <a href="#service" onclick="toggleMenu()">예배</a>
+  <a href="#notice" onclick="toggleMenu()">공지</a>
+  <a href="#location" onclick="toggleMenu()">오시는길</a>
+</div>
 
 <div class="hero">
   <div>
@@ -124,7 +179,7 @@ footer{
 
 <section id="about">
   <h2>교회 소개</h2>
-  <p>우리 교회는 예배와 말씀, 사랑으로 세상을 섬깁니다.</p>
+  <p>우리는 예배와 말씀, 사랑으로 세상을 섬깁니다.</p>
 </section>
 
 <section id="service">
@@ -140,7 +195,11 @@ footer{
 <section id="location">
   <h2>오시는 길</h2>
   <p>서울시 ○○구 ○○로 123</p>
-  <a href="https://map.kakao.com/" target="_blank" class="btn">지도 보기</a>
+
+  <div class="map">
+    <iframe src="https://map.kakao.com/link/map/서울시청,37.5665,126.9780"
+    width="100%" height="100%" style="border:0;"></iframe>
+  </div>
 </section>
 
 <footer>
@@ -152,6 +211,7 @@ document.getElementById("church-name").innerText = churchData.name;
 document.getElementById("footer-name").innerText = churchData.name;
 document.getElementById("slogan").innerText = churchData.slogan;
 
+// 데이터 렌더링
 const sDiv = document.getElementById("services");
 churchData.services.forEach(s=>{
   sDiv.innerHTML += `<div class="card"><h3>${s.title}</h3><p>${s.time}</p></div>`;
@@ -162,11 +222,16 @@ churchData.announcements.forEach(a=>{
   aDiv.innerHTML += `<div class="card"><h3>${a.title}</h3><p>${a.date}</p></div>`;
 });
 
-// 헤더 스크롤 효과
+// 스크롤 헤더
 window.addEventListener("scroll",()=>{
   const header=document.getElementById("header");
   header.classList.toggle("scrolled",window.scrollY>50);
 });
+
+// 모바일 메뉴
+function toggleMenu(){
+  document.getElementById("mobileMenu").classList.toggle("active");
+}
 </script>
 
 </body>
