@@ -239,12 +239,12 @@ nav a.active{
 
 <section id="service" class="reveal">
   <h2>예배 안내</h2>
-  <div class="card reveal delay2" id="services"></div>
+  <div class="grid" id="services"></div>
 </section>
 
 <section id="notice" class="reveal">
   <h2>공지사항</h2>
-  <div class="card reveal delay3" id="announcements"></div>
+  <div class="grid" id="announcements"></div>
 </section>
 
 <section id="location" class="reveal">
@@ -266,6 +266,8 @@ document.getElementById("church-name").innerText = churchData.name;
 document.getElementById("footer-name").innerText = churchData.name;
 document.getElementById("slogan").innerText = churchData.slogan;
 
+const sDiv = document.getElementById("services");
+const aDiv = document.getElementById("announcements");
 // 데이터 렌더링
 churchData.services.forEach((s, i)=>{
   sDiv.innerHTML += `
