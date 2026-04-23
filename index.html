@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>교회</title>
+
+<script src="data.js"></script>
+
+<link href="https://cdn.jsdelivr.net/npm/pretendard/dist/web/static/pretendard.css" rel="stylesheet">
+
+<style>
+:root{
+  --main:#6366f1;
+  --bg:#0b1120;
+  --card:#111827;
+}
+
+*{margin:0;padding:0;box-sizing:border-box;font-family:'Pretendard',sans-serif;}
+
+body{
+  background:var(--bg);
+  color:#fff;
+  line-height:1.6;
+}
+
+header{
+  position:fixed;
+  width:100%;
+  padding:20px 40px;
+  display:flex;
+  justify-content:space-between;
+  z-index:1000;
+  transition:0.3s;
+}
+
+header.scrolled{
+  background:rgba(0,0,0,0.6);
+  backdrop-filter:blur(10px);
+}
+
+.hero{
+  height:100vh;
+  background:linear-gradient(rgba(0,0,0,0.6),rgba(0,0,0,0.8)),
+  url('https://images.unsplash.com/photo-1507692049790-de58290a4334') center/cover;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  text-align:center;
+}
+
+.hero h1{
+  font-size:60px;
+  margin-bottom:10px;
+}
+
+.hero p{
+  opacity:0.8;
+}
+
+section{
+  padding:120px 20px;
+  max-width:1100px;
+  margin:auto;
+}
+
+h2{
+  margin-bottom:20px;
+  font-size:28px;
+}
+
+.grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+  gap:25px;
+}
+
+.card{
+  background:var(--card);
+  padding:30px;
+  border-radius:15px;
+  transition:0.3s;
+}
+
+.card:hover{
+  transform:translateY(-8px);
+  box-shadow:0 20px 40px rgba(0,0,0,0.3);
+}
+
+.reveal{
+  opacity:0;
+  transform:translateY(40px);
+  transition:1s;
+}
+
+.reveal.active{
+  opacity:1;
+  transform:translateY(0);
+}
+
+.btn{
+  margin-top:20px;
+  display:inline-block;
+  padding:12px 28px;
+  background:var(--main);
+  border-radius:30px;
+  text-decoration:none;
+  color:white;
+}
+
+footer{
+  text-align:center;
+  padding:40px;
+  background:#020617;
+  color:#888;
+}
+</style>
+</head>
+
+<body>
+
+<header id="header">
+  <h2 id="church-name"></h2>
+</header>
+
+<div class="hero">
+  <div>
+    <h1 id="slogan"></h1>
+    <p>Welcome to our church</p>
+  </div>
+</div>
+
+<section class="reveal">
+  <h2>예배 안내</h2>
+  <div class="grid" id="services"></div>
+</section>
+
+<section class="reveal">
+  <h2>공지사항</h2>
+  <div class="grid" id="announcements"></div>
+</section>
+
+<section class="reveal">
+  <h2>설교 영상</h2>
+  <a id="youtube" class="btn" target="_blank">영상 보러가기</a>
+</section>
+
+<footer>
+  © 2026 <span id="footer-name"></span>
+</footer>
+
+<script>
+document.getElementById("church-name").innerText = churchData.name;
+document.getElementById("footer-name").innerText = churchData.name;
+document.getElementById("slogan").innerText = churchData.slogan;
+
+const sDiv = document.getElementById("services");
+churchData.services.forEach(s=>{
+  sDiv.innerHTML += `
+    <div class="card">
+      <h3>${s.title}</h3>
+      <p>${s.time}</p>
+    </div>`;
+});
+
+const aDiv = document.getElementById("announcements");
+churchData.announcements.forEach(a=>{
+  aDiv.innerHTML += `
+    <div class="card">
+      <h3>${a.title}</h3>
+      <p>${a.date}</p>
+    </div>`;
+});
+
+document.getElementById("youtube").href = churchData.youtube;
+
+// 스크롤 인터랙션
+window.addEventListener("scroll",()=>{
+  const header=document.getElementById("header");
+  header.classList.toggle("scrolled",window.scrollY>50);
+
+  document.querySelectorAll(".reveal").forEach(el=>{
+    const top=el.getBoundingClientRect().top;
+    if(top<window.innerHeight-100){
+      el.classList.add("active");
+    }
+  });
+});
+</script>
+
+</body>
+</html>
