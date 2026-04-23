@@ -167,11 +167,25 @@ footer{
 #topBtn:hover{
   transform:translateY(-3px);
 }
+
+#progressBar{
+  position:fixed;
+  top:0;
+  left:0;
+  width:0%;
+  height:3px;
+  background:#6366f1;
+  z-index:9999;
+}
+nav a.active{
+  color:#6366f1;
+  font-weight:600;
+}
 </style>
 </head>
 
 <body>
-
+<div id="progressBar"></div>
 <header id="header">
   <h3 id="church-name"></h3>
   <nav>
@@ -308,6 +322,33 @@ window.addEventListener("scroll",()=>{
 // 클릭 시 부드럽게 맨 위로
 topBtn.addEventListener("click", ()=>{
   smoothScroll(0, 800);
+});
+
+window.addEventListener("scroll",()=>{
+  const scrollTop = window.scrollY;
+  const docHeight = document.body.scrollHeight - window.innerHeight;
+  const percent = (scrollTop / docHeight) * 100;
+  document.getElementById("progressBar").style.width = percent + "%";
+});
+const sections = document.querySelectorAll("section");
+const navLinks = document.querySelectorAll("nav a");
+
+window.addEventListener("scroll",()=>{
+  let current = "";
+
+  sections.forEach(section=>{
+    const sectionTop = section.offsetTop - 100;
+    if(window.scrollY >= sectionTop){
+      current = section.getAttribute("id");
+    }
+  });
+
+  navLinks.forEach(link=>{
+    link.classList.remove("active");
+    if(link.getAttribute("href") === "#" + current){
+      link.classList.add("active");
+    }
+  });
 });
 
 </script>
