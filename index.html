@@ -260,7 +260,21 @@ nav a.active{
   opacity:1;
   pointer-events:auto;
 }
+.video{
+  position:relative;
+  width:100%;
+  padding-bottom:56.25%; /* 16:9 */
+  margin-top:10px;
+}
 
+.video iframe{
+  position:absolute;
+  width:100%;
+  height:100%;
+  top:0;
+  left:0;
+  border-radius:10px;
+}
 </style>
 </head>
 
@@ -272,6 +286,7 @@ nav a.active{
   <nav>
     <a href="#about">소개</a>
     <a href="#service">예배</a>
+    <a href="#youtube">유튜브</a>
     <a href="#notice">공지</a>
     <a href="#location">오시는길</a>
   </nav>
@@ -282,6 +297,7 @@ nav a.active{
 <div class="mobile-menu" id="mobileMenu">
   <a href="#about" ">소개</a>
   <a href="#service" >예배</a>
+  <a href="#youtube">유튜브</a>
   <a href="#notice" ">공지</a>
   <a href="#location" ">오시는길</a>
 </div>
@@ -301,6 +317,41 @@ nav a.active{
 <section id="service" class="reveal">
   <h2>예배 안내</h2>
   <div class="grid" id="services"></div>
+</section>
+
+<section id="youtube" class="reveal">
+  <h2>유튜브</h2>
+
+  <div class="grid">
+
+    <!-- 교회 채널 -->
+    <div class="card reveal delay1">
+      <h3>교회 공식 채널</h3>
+      <div class="video">
+        <iframe 
+          src="https://www.youtube.com/live/MYdZWLpebzQ?si=Fpw-yd7APPGuT4hK" 
+          frameborder="0"
+          allowfullscreen>
+        </iframe>
+      </div>
+      <a href="https://youtube.com/@37kyk?si=4CiNGQ2DyXp7ip2G" target="_blank" class="btn">
+  채널 방문
+</a>
+    </div>
+
+    <!-- 목사님 채널 -->
+    <div class="card reveal delay2">
+      <h3>목사님 채널</h3>
+      <div class="video">
+        <iframe 
+          src="https://youtube.com/@p9191?si=wvkwqBB_o2_-x8E8" 
+          frameborder="0"
+          allowfullscreen>
+        </iframe>
+      </div>
+    </div>
+
+  </div>
 </section>
 
 <section id="notice" class="reveal">
