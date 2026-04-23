@@ -181,6 +181,26 @@ nav a.active{
   color:#6366f1;
   font-weight:600;
 }
+
+/* 기본 숨김 상태 */
+.reveal{
+  opacity:0;
+  transform:translateY(40px);
+  transition:all 0.8s ease;
+}
+
+/* 등장 상태 */
+.reveal.active{
+  opacity:1;
+  transform:translateY(0);
+}
+
+/* 딜레이 (순차 등장) */
+.reveal.delay1{transition-delay:0.1s;}
+.reveal.delay2{transition-delay:0.2s;}
+.reveal.delay3{transition-delay:0.3s;}
+.reveal.delay4{transition-delay:0.4s;}
+
 </style>
 </head>
 
@@ -212,22 +232,22 @@ nav a.active{
   </div>
 </div>
 
-<section id="about">
+<section id="about" class="reveal">
   <h2>교회 소개</h2>
-  <p>우리는 예배와 말씀, 사랑으로 세상을 섬깁니다.</p>
+  <p  class="card reveal delay1">우리는 예배와 말씀, 사랑으로 세상을 섬깁니다.</p>
 </section>
 
-<section id="service">
+<section id="service" class="reveal">
   <h2>예배 안내</h2>
-  <div class="grid" id="services"></div>
+  <div class="card reveal delay2" id="services"></div>
 </section>
 
-<section id="notice">
+<section id="notice" class="reveal">
   <h2>공지사항</h2>
-  <div class="grid" id="announcements"></div>
+  <div class="card reveal delay3" id="announcements"></div>
 </section>
 
-<section id="location">
+<section id="location" class="reveal">
   <h2>오시는 길</h2>
   <p>서울시 ○○구 ○○로 123</p>
 
@@ -247,14 +267,20 @@ document.getElementById("footer-name").innerText = churchData.name;
 document.getElementById("slogan").innerText = churchData.slogan;
 
 // 데이터 렌더링
-const sDiv = document.getElementById("services");
-churchData.services.forEach(s=>{
-  sDiv.innerHTML += `<div class="card"><h3>${s.title}</h3><p>${s.time}</p></div>`;
+churchData.services.forEach((s, i)=>{
+  sDiv.innerHTML += `
+    <div class="card reveal delay${i+1}">
+      <h3>${s.title}</h3>
+      <p>${s.time}</p>
+    </div>`;
 });
 
-const aDiv = document.getElementById("announcements");
-churchData.announcements.forEach(a=>{
-  aDiv.innerHTML += `<div class="card"><h3>${a.title}</h3><p>${a.date}</p></div>`;
+churchData.announcements.forEach((a, i)=>{
+  aDiv.innerHTML += `
+    <div class="card reveal delay${i+1}">
+      <h3>${a.title}</h3>
+      <p>${a.date}</p>
+    </div>`;
 });
 
 // 스크롤 헤더
@@ -350,6 +376,25 @@ window.addEventListener("scroll",()=>{
     }
   });
 });
+
+function revealOnScroll(){
+  const reveals = document.querySelectorAll(".reveal");
+
+  reveals.forEach(el=>{
+    const windowHeight = window.innerHeight;
+    const elementTop = el.getBoundingClientRect().top;
+
+    if(elementTop < windowHeight - 80){
+      el.classList.add("active");
+    }
+  });
+}
+
+// 스크롤 시 실행
+window.addEventListener("scroll", revealOnScroll);
+
+// 처음 로딩 시도 실행 (중요)
+window.addEventListener("load", revealOnScroll);
 
 </script>
 
