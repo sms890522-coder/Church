@@ -1,5 +1,5 @@
 const churchData = {
-  name: "우리교회",
+  name: "사랑의숲교회",
   slogan: "사랑과 은혜가 흐르는 공동체",
 
   services: [
