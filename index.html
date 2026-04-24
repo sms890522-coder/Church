@@ -652,10 +652,6 @@ churchData.services.forEach((s, i)=>{
 `;
 });
 
-const headerHeight = document.querySelector("header").offsetHeight;
-const extraOffset = window.innerWidth < 768 ? 10 : 0;
-
-const targetY = target.getBoundingClientRect().top + window.scrollY - headerHeight + extraOffset;
 
 // 스크롤 헤더
 window.addEventListener("scroll",()=>{
