@@ -500,22 +500,9 @@ footer h3{
 #notice{
   background:rgba(99,102,241,0.05);
 }
-
 @media(max-width:768px){
   section{
-    padding:60px 20px;
-  }
-
-  h2{
-    margin-top:0;
-  }
-}@media(max-width:768px){
-  section{
-    padding:60px 20px;
-  }
-
-  h2{
-    margin-top:0;
+    padding:80px 20px;
   }
 }
 
@@ -778,17 +765,18 @@ function revealOnScroll(){
     const windowHeight = window.innerHeight;
     const elementTop = el.getBoundingClientRect().top;
 
-    if(elementTop < windowHeight - 80){
+    if(elementTop < windowHeight - 40){
       el.classList.add("active");
     }
   });
 }
 
-// 스크롤 시 실행
 window.addEventListener("scroll", revealOnScroll);
 
-// 처음 로딩 시도 실행 (중요)
-window.addEventListener("load", revealOnScroll);
+window.addEventListener("load", ()=>{
+  revealOnScroll();
+  setTimeout(revealOnScroll, 200);
+});
 
 function forceCloseOverlay(){
   const overlay = document.getElementById("overlay");
