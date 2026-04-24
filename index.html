@@ -501,6 +501,24 @@ footer h3{
   background:rgba(99,102,241,0.05);
 }
 
+@media(max-width:768px){
+  section{
+    padding:60px 20px;
+  }
+
+  h2{
+    margin-top:0;
+  }
+}@media(max-width:768px){
+  section{
+    padding:60px 20px;
+  }
+
+  h2{
+    margin-top:0;
+  }
+}
+
 </style>
 </head>
 
@@ -647,6 +665,10 @@ churchData.services.forEach((s, i)=>{
 `;
 });
 
+const headerHeight = document.querySelector("header").offsetHeight;
+const extraOffset = window.innerWidth < 768 ? 10 : 0;
+
+const targetY = target.getBoundingClientRect().top + window.scrollY - headerHeight + extraOffset;
 
 // 스크롤 헤더
 window.addEventListener("scroll",()=>{
