@@ -463,6 +463,25 @@ footer h3{
 #overlay.active{
   pointer-events:auto;
 }
+
+.about-wrap{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:50px;
+  align-items:center;
+}
+
+.about-img img{
+  width:100%;
+  border-radius:16px;
+}
+
+.card i{
+  width:28px;
+  height:28px;
+  margin-bottom:10px;
+  color:#6366f1;
+}
   
 </style>
 </head>
@@ -500,10 +519,16 @@ footer h3{
 </div>
 
 <section id="about" class="reveal">
-   <div class="container">
-  <h2><i data-lucide="church"></i> 교회 소개</h2>
-  <p  class="section-desc">우리는 예배와 말씀, 사랑으로 세상을 섬깁니다.</p>
-   </div>
+   <div class="container about-wrap" >
+     <div class="about-img">
+      <img src="https://images.unsplash.com/photo-1507692049790-de58290a4334">
+    </div>
+
+     <div class="about-text">
+      <h2><i data-lucide="church"></i> 교회 소개</h2>
+      <p  class="section-desc">우리는 예배와 말씀, 사랑으로 세상을 섬깁니다.</p>
+    </div>   
+  </div>
 </section>
 
 <section id="service" class="reveal">
@@ -596,10 +621,12 @@ const sDiv = document.getElementById("services");
 // 데이터 렌더링
 churchData.services.forEach((s, i)=>{
   sDiv.innerHTML += `
-    <div class="card reveal delay${i+1}">
-      <h3>${s.title}</h3>
-      <p>${s.time}</p>
-    </div>`;
+  <div class="card reveal delay${i+1}">
+    <i data-lucide="clock"></i>
+    <h3>${s.title}</h3>
+    <p>${s.time}</p>
+  </div>
+`;
 });
 
 
