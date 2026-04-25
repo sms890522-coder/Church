@@ -657,6 +657,22 @@ footer h3{
   margin-bottom:10px;
 }
 
+.reveal-left{
+  opacity:0;
+  transform:translateX(-40px);
+  transition:all 0.8s ease;
+}
+.reveal-right{
+  opacity:0;
+  transform:translateX(40px);
+  transition:all 0.8s ease;
+}
+
+.reveal-left.active,
+.reveal-right.active{
+  opacity:1;
+  transform:translateX(0);
+}
 </style>
 </head>
 
@@ -713,38 +729,42 @@ footer h3{
   </div>
 </div>
 
-<section id="about" class="reveal">
-   <div class="container about-wrap" >
-     <div class="about-img">
-      <img src="./church1.jpeg" alt="교회 소개 이미지" loading="lazy">
+<section id="about">
+  <div class="container about-wrap">
+    
+    <div class="about-img reveal-left delay1">
+      <img src="./church1.jpeg" alt="교회 소개 이미지">
     </div>
 
-     <div class="about-text">
+    <div class="about-text reveal-right delay2">
       <h2><i data-lucide="church"></i> 교회 소개</h2>
-      <p  class="section-desc">우리는 예배와 말씀, 사랑으로 세상을 섬깁니다.</p>
-    </div>   
+      <p class="section-desc">
+        우리는 예배와 말씀, 사랑으로 세상을 섬깁니다.
+      </p>
+    </div>
+
   </div>
 </section>
 
-<section id="vision" class="reveal">
+<section id="vision" >
   <div class="container">
     <h2><i data-lucide="sparkles"></i> 우리의 비전</h2>
     <p class="section-desc">하나님 사랑, 이웃 사랑을 실천하는 공동체</p>
 
     <div class="vision-grid">
-      <div class="vision-card">
+      <div class="vision-card reveal delay1">
         <i data-lucide="heart"></i>
         <h3>사랑</h3>
         <p>서로 사랑하며 하나되는 공동체</p>
       </div>
 
-      <div class="vision-card">
+      <div class="vision-card reveal delay2">
         <i data-lucide="book-open"></i>
         <h3>말씀</h3>
         <p>말씀 중심의 삶</p>
       </div>
 
-      <div class="vision-card">
+      <div class="vision-card reveal delay3">
         <i data-lucide="users"></i>
         <h3>섬김</h3>
         <p>세상을 향한 섬김</p>
@@ -753,14 +773,14 @@ footer h3{
   </div>
 </section>
 
-<section id="pastor" class="reveal">
+<section id="pastor" >
   <div class="container pastor-wrap">
     
-    <div class="pastor-img">
+    <div class="pastor-img reveal-left delay1">
       <img src="https://images.unsplash.com/photo-1603415526960-f8f0b1b3f8e0">
     </div>
 
-    <div class="pastor-text">
+    <div class="pastor-text reveal-right delay2">
       <h2><i data-lucide="user"></i> 담임목사 인사말</h2>
       <p class="section-desc">
         사랑의숲교회에 오신 여러분을 환영합니다.<br>
