@@ -922,13 +922,19 @@ document.getElementById("slogan").innerText = churchData.slogan;
 const sDiv = document.getElementById("services");
 // 데이터 렌더링
 churchData.services.forEach((s, i)=>{
-  sDiv.innerHTML += `
-  <div class="card reveal delay${i+1}">
-    <i data-lucide="clock"></i>
-    <h3>${s.title}</h3>
-    <p>${s.time}</p>
-  </div>
+  const div = document.createElement("div");
+div.className = `card reveal delay${i+1}`;
+
+div.innerHTML = `
+  <i data-lucide="clock"></i>
+  <h3>${s.title}</h3>
+  <p>${s.time}</p>
 `;
+
+sDiv.appendChild(div);
+
+// 🔥 핵심 (공지랑 동일)
+observer.observe(div);
 });
 
 
@@ -1180,7 +1186,8 @@ window.addEventListener("load", () => {
     window.scrollTo(0, 0);
   }, 0);
 });
-  lucide.createIcons();
+  observer.observe(div);
+lucide.createIcons();
 </script>
 <script src="https://ssl.daumcdn.net/dmaps/map_js_init/roughmapLoader.js"></script>
 
