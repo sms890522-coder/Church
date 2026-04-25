@@ -880,6 +880,23 @@ footer h3{
 </div>
   <script src="https://unpkg.com/lucide@latest"></script>
 <script>
+const observer = new IntersectionObserver((entries)=>{
+  entries.forEach(entry=>{
+    if(entry.isIntersecting){
+      entry.target.classList.add("active");
+    }
+  });
+},{
+  threshold: 0.15
+});
+
+document.querySelectorAll(
+  ".reveal, .reveal-left, .reveal-right"
+).forEach(el=>{
+  observer.observe(el);
+});
+
+
 window.addEventListener("DOMContentLoaded", ()=>{
   document.body.classList.add("loaded");
 
@@ -1015,21 +1032,7 @@ window.addEventListener("scroll",()=>{
     }
   });
 });
-const observer = new IntersectionObserver((entries)=>{
-  entries.forEach(entry=>{
-    if(entry.isIntersecting){
-      entry.target.classList.add("active");
-    }
-  });
-},{
-  threshold: 0.15
-});
 
-document.querySelectorAll(
-  ".reveal, .reveal-left, .reveal-right"
-).forEach(el=>{
-  observer.observe(el);
-});
 
 function forceCloseOverlay(){
   const overlay = document.getElementById("overlay");
@@ -1068,18 +1071,21 @@ async function loadNotices(){
 
     if(visible !== "Y") return;
 
-    container.innerHTML += `
-  <div class="card reveal" onclick="openModal(
-    '${title}',
-    '${date}',
-    '${content}',
-    '${link}'
-  )">
-    <h3>${title}</h3>
-    <p>${date}</p>
-    ${content ? `<small>${content}</small>` : ""}
-  </div>
+  const div = document.createElement("div");
+div.className = "card reveal";
+
+div.onclick = () => openModal(title, date, content, link);
+
+div.innerHTML = `
+  <h3>${title}</h3>
+  <p>${date}</p>
+  ${content ? `<small>${content}</small>` : ""}
 `;
+
+container.appendChild(div);
+
+// 🔥 이거 한 줄이 핵심
+observer.observe(div);
     
   });
 }
