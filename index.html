@@ -661,17 +661,7 @@ footer h3{
     <div class="sk-card"></div>
   </div>
 </div><!-- 로딩 스켈레톤 -->
-<div id="skeleton">
-  <div class="sk-header"></div>
 
-  <div class="sk-hero"></div>
-
-  <div class="sk-section">
-    <div class="sk-title"></div>
-    <div class="sk-card"></div>
-    <div class="sk-card"></div>
-  </div>
-</div>
 
   <div id="overlay"></div>
 <div id="progressBar"></div>
@@ -855,8 +845,9 @@ footer h3{
 </div>
   <script src="https://unpkg.com/lucide@latest"></script>
 <script>
-window.addEventListener("load", ()=>{
+window.addEventListener("DOMContentLoaded", ()=>{
   document.body.classList.add("loaded");
+
   const sk = document.getElementById("skeleton");
 
   if(sk){
@@ -869,7 +860,10 @@ window.addEventListener("load", ()=>{
   }
 });
 
+document.addEventListener("DOMContentLoaded", ()=>{
   const offset = document.querySelector("header").offsetHeight;
+});
+
 document.getElementById("church-name").innerText = churchData.name;
 document.getElementById("slogan").innerText = churchData.slogan;
 
