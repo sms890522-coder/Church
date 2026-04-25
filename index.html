@@ -520,6 +520,64 @@ footer h3{
   border-radius:16px;
 }
 
+/* 비전 */
+.vision-grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+  gap:20px;
+}
+
+.vision-card{
+  text-align:center;
+  padding:30px 20px;
+  border-radius:16px;
+  background:rgba(255,255,255,0.04);
+  border:1px solid rgba(255,255,255,0.1);
+  transition:0.3s;
+}
+
+.vision-card i{
+  width:32px;
+  height:32px;
+  margin-bottom:10px;
+  color:#6366f1;
+}
+
+.vision-card:hover{
+  transform:translateY(-6px);
+  box-shadow:0 20px 40px rgba(0,0,0,0.3);
+}
+
+/* 목사님 */
+.pastor-wrap{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:50px;
+  align-items:center;
+}
+
+.pastor-img img{
+  width:100%;
+  border-radius:16px;
+}
+
+.pastor-text{
+  max-width:500px;
+}
+
+/* 유튜브 강조 */
+#youtube{
+  background:
+    linear-gradient(rgba(0,0,0,0.85),rgba(0,0,0,0.95)),
+    url('https://images.unsplash.com/photo-1492724441997-5dc865305da7') center/cover;
+}
+
+/* 모바일 */
+@media(max-width:768px){
+  .pastor-wrap{
+    grid-template-columns:1fr;
+  }
+}
 
 </style>
 </head>
@@ -531,6 +589,8 @@ footer h3{
   <h3 id="church-name"></h3>
   <nav>
     <a href="#about">소개</a>
+    <a href="#vision">비전</a>
+    <a href="#pastor">목사님</a>
     <a href="#service">예배</a>
     <a href="#youtube">유튜브</a>
     <a href="#notice">공지</a>
@@ -542,6 +602,8 @@ footer h3{
 <!-- 모바일 메뉴 -->
 <div class="mobile-menu" id="mobileMenu">
   <a href="#about">소개</a>
+  <a href="#vision">비전</a>
+  <a href="#pastor">목사님</a>
   <a href="#service">예배</a>
   <a href="#youtube">유튜브</a>
   <a href="#notice">공지</a>
@@ -566,6 +628,52 @@ footer h3{
       <h2><i data-lucide="church"></i> 교회 소개</h2>
       <p  class="section-desc">우리는 예배와 말씀, 사랑으로 세상을 섬깁니다.</p>
     </div>   
+  </div>
+</section>
+
+<section id="vision" class="reveal">
+  <div class="container">
+    <h2><i data-lucide="sparkles"></i> 우리의 비전</h2>
+    <p class="section-desc">하나님 사랑, 이웃 사랑을 실천하는 공동체</p>
+
+    <div class="vision-grid">
+      <div class="vision-card">
+        <i data-lucide="heart"></i>
+        <h3>사랑</h3>
+        <p>서로 사랑하며 하나되는 공동체</p>
+      </div>
+
+      <div class="vision-card">
+        <i data-lucide="book-open"></i>
+        <h3>말씀</h3>
+        <p>말씀 중심의 삶</p>
+      </div>
+
+      <div class="vision-card">
+        <i data-lucide="users"></i>
+        <h3>섬김</h3>
+        <p>세상을 향한 섬김</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="pastor" class="reveal">
+  <div class="container pastor-wrap">
+    
+    <div class="pastor-img">
+      <img src="https://images.unsplash.com/photo-1603415526960-f8f0b1b3f8e0">
+    </div>
+
+    <div class="pastor-text">
+      <h2><i data-lucide="user"></i> 담임목사 인사말</h2>
+      <p class="section-desc">
+        사랑의숲교회에 오신 여러분을 환영합니다.<br>
+        우리는 예수님의 사랑으로 세상을 섬기는 공동체입니다.
+      </p>
+      <a href="#" class="btn">더 알아보기</a>
+    </div>
+
   </div>
 </section>
 
