@@ -35,12 +35,7 @@
   border-left:1px solid rgba(255,255,255,0.08); /* 추가 */
   box-shadow:-10px 0 30px rgba(0,0,0,0.5); /* 깊이감 */
 }
-section{
-  border-bottom:1px solid rgba(255,255,255,0.04);
-  width:100%;
-  padding:100px 0; /* 좌우 패딩 제거 */
-  max-width:none;  /* 🔥 핵심 */
-}
+
 
 section:nth-child(even){
   background:rgba(255,255,255,0.02);
@@ -75,6 +70,7 @@ p{
 body{
   background:var(--bg);
   color:#e5e7eb;
+  font-family:'Pretendard', sans-serif;
 }
   
 header{
@@ -164,13 +160,14 @@ h1{
 h2{
   font-size:32px;
   font-weight:600;
-  margin-bottom:16px;
+  margin-bottom:20px;
 }
 
 .section-desc{
-  font-size:16px;
+  font-size:17px;
+  line-height:1.7;
   color:#cbd5e1;
-  margin-bottom:40px;
+  margin-bottom:50px;
 }
 
 .grid{
@@ -387,7 +384,7 @@ section{
   position:relative;
   box-shadow:inset 0 -1px 0 rgba(255,255,255,0.06);
   width:100%;
-  padding:100px 0; /* 좌우 패딩 제거 */
+  padding:120px 0; /* 좌우 패딩 제거 */
   max-width:none;  /* 🔥 핵심 */
 }
 
@@ -429,6 +426,7 @@ section::before{
   position:relative;
   overflow:hidden;
   text-align:left;
+  box-shadow:0 10px 30px rgba(0,0,0,0.25);
 }
 
 .card::after{
@@ -442,7 +440,7 @@ section::before{
 
 .card:hover{
   transform:translateY(-8px);
-  box-shadow:0 30px 60px rgba(0,0,0,0.3);
+  box-shadow:0 20px 60px rgba(0,0,0,0.4);
 }
 
 .card:hover::after{
